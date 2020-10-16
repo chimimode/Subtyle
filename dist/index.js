@@ -34,6 +34,11 @@ class Subtyle {
     this.white = (option) => {};
   }
 
+  init() {
+    this.event();
+    this.hide();
+  }
+
   render() {
     this.subtitle.appendChild(this.text);
     this.video.parentNode.prepend(this.subtitle);
