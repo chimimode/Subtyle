@@ -5,14 +5,31 @@
   <h1>VTT subtitle styling Sample Page</h1>
 
   <div id="container">
-    <video id="video" controls="controls" preload="none" width="600">
+    <video id="video" controls width="600" loop="true">
       <source id="mp4" src="http://garimto4ever.dothome.co.kr/example/subtitle-vtt-style/SampleGolden.mp4" type="video/mp4" />
       <track id="subtitle" kind="subtitles" label="sample subtitles" src="http://garimto4ever.dothome.co.kr/example/subtitle-vtt-style/subtitle.vtt" srclang="ko" default></track>
       <p>Your user agent does not support the HTML5 Video element.</p>
     </video>
   </div>
+  <div>
+    <button type="button" onclick="on();">USE Subtyle</button>
+    <button type="button" onclick="off();">OFF Subtyle</button>
+  </div>
+  <div>
+    
+  </div>
 </html>
 <script type="text/javascript">
-  var subtyle = new Subtyle(document.getElementById('video'), document.getElementById('subtitle'));
-  subtyle.vtt();
+  var video = document.getElementById('video');
+  var vtt = document.getElementById('subtitle');
+
+  var subtyle = new Subtyle(video, vtt);
+  subtyle.on();
+
+  function on() {
+    subtyle.on();
+  }
+  function off() {
+    subtyle.off();
+  }
 </script>

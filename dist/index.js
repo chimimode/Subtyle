@@ -1,17 +1,30 @@
 class Subtyle {
   constructor(video, track) {
-    this.videoElement = video;
-    this.videoVtt = video.textTracks;
+    this.video = video;
+    this.vtt = video.textTracks;
     this.track = track;
 
+    this.subtitle = document.createElement('div');
+    this.text = document.createElement('span');
+
     this.style = {
-      animate: true,
-      background: 'black',
-      color: 'white',
+      'background-color': 'grey',
+      'font-size': '15pt',
+      display: 'inline',
+      margin: '0 10 0 10',
+      position: 'relative',
+      'z-index': '1',
+      left: '50%',
     };
 
-    this.vtt = (option) => {
+    this.on = () => {
+      this.setStyle();
+      this.event();
       this.render();
+    };
+
+    this.off = () => {
+      this.hide();
     };
 
     this.big = (option) => {};
@@ -19,26 +32,52 @@ class Subtyle {
     this.small = (option) => {};
 
     this.white = (option) => {};
-
-    this.show = () => {};
-
-    this.hide = () => {};
   }
 
   render() {
-    let subtitleContainer = document.createElement('div');
-    let subtitleText = document.createElement('span');
-    subtitleContainer.appendChild(subtitleText);
+    this.subtitle.appendChild(this.text);
+    this.video.parentNode.prepend(this.subtitle);
+  }
 
-    this.videoElement.parentNode.prepend(subtitleContainer);
+  hide() {
+    this.subtitle.hidden = true;
+    this.video.textTracks[0].mode = 'showing';
 
+    // TODO removeEventListener event
+    // this.track.removeEventListener('cuechange', function () {}, true);
+
+    this.render();
+  }
+
+  event() {
     this.track.addEventListener('cuechange', (event) => {
       console.log(event);
       if (event.target.track.activeCues[0] !== undefined) {
-        subtitleText.textContent = event.target.track.activeCues[0].text;
+        this.text.textContent = event.target.track.activeCues[0].text;
       } else {
-        subtitleText.textContent = '';
+        this.text.textContent = '';
       }
     });
+  }
+
+  setStyle() {
+    this.video.textTracks[0].mode = 'hidden';
+
+    if (this.video.zIndex !== undefined) {
+      this.subtitle.style.zIndex = this.video.zIndex + 1;
+    } else {
+      this.subtitle.style.zIndex = 1;
+    }
+
+    this.subtitle.style.width = `${this.video.offsetWidth}px`;
+    this.subtitle.style.color = 'blue';
+    this.subtitle.style.position = 'absolute';
+    this.subtitle.style.top = `40%`;
+    this.subtitle.style.display = 'flex';
+    this.subtitle.style.justifyContent = 'center';
+    this.subtitle.style.fontSize = '1em';
+
+    this.text.style.backgroundColor = 'white';
+    this.text.style.padding = '0 10 0 10';
   }
 }
