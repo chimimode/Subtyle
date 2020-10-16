@@ -12,24 +12,16 @@
     </video>
   </div>
   <div>
-    <button type="button" onclick="on();">USE Subtyle</button>
-    <button type="button" onclick="off();">OFF Subtyle</button>
+    <button type="button" onclick="subtyle.on();">USE Subtyle</button>
+    <button type="button" onclick="subtyle.off();">OFF Subtyle</button>
   </div>
   <div>
-    
+
   </div>
 </html>
 <script type="text/javascript">
   var video = document.getElementById('video');
   var vtt = document.getElementById('subtitle');
 
-  var subtyle = new Subtyle(video, vtt);
-  subtyle.on();
-
-  function on() {
-    subtyle.on();
-  }
-  function off() {
-    subtyle.off();
-  }
+  var subtyle = new Subtyle(video, vtt);  
 </script>
