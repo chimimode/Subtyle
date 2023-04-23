@@ -4,7 +4,8 @@
   "description": "Decorate the video's subtitles with html elements. Or decorate using vtt property.",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -p 8080"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/chimimode/subtitle-vtt-style/issues"
   },
-  "homepage": "https://github.com/chimimode/subtitle-vtt-style#readme"
+  "homepage": "https://github.com/chimimode/subtitle-vtt-style#readme",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
 }

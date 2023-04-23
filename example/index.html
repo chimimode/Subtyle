@@ -1,13 +1,13 @@
 <html>
   <head>
-    <script type="text/javascript" src="dist/index.js"></script>
+    <script type="text/javascript" src="../dist/index.js"></script>
   </head>
   <h1>VTT subtitle styling Sample Page</h1>
 
   <div id="container">
-    <video id="video" controls width="600" loop="true">
-      <source id="mp4" src="http://garimto4ever.dothome.co.kr/example/subtitle-vtt-style/SampleGolden.mp4" type="video/mp4" />
-      <track id="subtitle" kind="subtitles" label="sample subtitles" src="http://garimto4ever.dothome.co.kr/example/subtitle-vtt-style/subtitle.vtt" srclang="ko" default></track>
+    <video id="video" controls width="600" loop="true" autoplay muted>
+      <source id="mp4" src="./SampleGolden.mp4" type="video/mp4" />
+      <track id="subtitle" kind="subtitles" label="sample subtitles" src="./subtitle.vtt" srclang="ko" default></track>
       <p>Your user agent does not support the HTML5 Video element.</p>
     </video>
   </div>
@@ -19,9 +19,9 @@
 
   </div>
 </html>
-<script type="text/javascript">
-  var video = document.getElementById('video');
-  var vtt = document.getElementById('subtitle');
+<script type="module" src="../dist/substyle.js">
+  var substyle = new Substyle(document.querySelector(video));
+  
+  substyle.test;
 
-  var subtyle = new Subtyle(video, vtt);  
 </script>
